@@ -1,0 +1,117 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvpk2ahpldson"]
+
+[ext_resource type="FontFile" uid="uid://bnqne1ta3t25r" path="res://assets/fonts/Rubik-SemiBold.ttf" id="1_6v2x8"]
+[ext_resource type="Script" path="res://scenes/table.gd" id="1_m88p8"]
+
+[node name="table" type="Node2D"]
+script = ExtResource("1_m88p8")
+
+[node name="main green background" type="ColorRect" parent="."]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 651.0
+size_flags_horizontal = 3
+color = Color(0.0745098, 0.588235, 0.152941, 1)
+
+[node name="title black background" type="ColorRect" parent="."]
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 266.0
+offset_bottom = 83.0
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.717647)
+
+[node name="lblTitle" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 31.0
+offset_top = 18.0
+offset_right = 248.0
+offset_bottom = 77.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("1_6v2x8")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "[wave amp=5
+ freq=10]Blackjack[/wave]"
+fit_content = true
+
+[node name="button contrainer" type="VBoxContainer" parent="."]
+offset_left = 15.0
+offset_top = 105.0
+offset_right = 475.0
+offset_bottom = 598.0
+theme_override_constants/separation = -4
+
+[node name="start game button" type="Button" parent="button contrainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_6v2x8")
+theme_override_font_sizes/font_size = 80
+text = "Start"
+
+[node name="continue game button" type="Button" parent="button contrainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_6v2x8")
+theme_override_font_sizes/font_size = 80
+text = "Continue"
+
+[node name="info game button" type="Button" parent="button contrainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_6v2x8")
+theme_override_font_sizes/font_size = 80
+text = "Info"
+
+[node name="quit game button" type="Button" parent="button contrainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_6v2x8")
+theme_override_font_sizes/font_size = 80
+text = "Quit
+"
+
+[node name="button contrainer2" type="VBoxContainer" parent="."]
+offset_left = 731.0
+offset_top = 17.0
+offset_right = 1133.0
+offset_bottom = 245.0
+theme_override_constants/separation = -4
+
+[node name="save data" type="Button" parent="button contrainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_6v2x8")
+theme_override_font_sizes/font_size = 80
+text = "Save Data"
+
+[node name="load data" type="Button" parent="button contrainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_6v2x8")
+theme_override_font_sizes/font_size = 80
+text = "Load Data"
+
+[connection signal="pressed" from="button contrainer/start game button" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="button contrainer/continue game button" to="." method="_on_continue_game_button_pressed"]
+[connection signal="pressed" from="button contrainer/quit game button" to="." method="_on_quit_game_button_pressed"]
+[connection signal="pressed" from="button contrainer2/save data" to="." method="_on_save_data_pressed"]
+[connection signal="pressed" from="button contrainer2/load data" to="." method="_on_load_data_pressed"]

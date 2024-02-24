@@ -1,0 +1,151 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3sc71dur451r"]
+
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_j25t6"]
+[ext_resource type="FontFile" uid="uid://bnqne1ta3t25r" path="res://assets/fonts/Rubik-SemiBold.ttf" id="2_vwq66"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_j25t6")
+
+[node name="main beige background" type="ColorRect" parent="."]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 651.0
+size_flags_horizontal = 3
+color = Color(0.533333, 0.482353, 0.360784, 1)
+
+[node name="dealer black background" type="ColorRect" parent="."]
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 195.0
+offset_bottom = 83.0
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.717647)
+
+[node name="player black background" type="ColorRect" parent="."]
+offset_left = 13.0
+offset_top = 232.0
+offset_right = 195.0
+offset_bottom = 303.0
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.717647)
+
+[node name="lblDealerTitle" type="RichTextLabel" parent="."]
+offset_left = 31.0
+offset_top = 18.0
+offset_right = 248.0
+offset_bottom = 77.0
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("2_vwq66")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "Dealer"
+fit_content = true
+
+[node name="lblDealerHand" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 27.0
+offset_top = 97.0
+offset_right = 300.0
+offset_bottom = 156.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("2_vwq66")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "dealer hand"
+fit_content = true
+
+[node name="lblPlayerTitle" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 22.0
+offset_top = 236.0
+offset_right = 239.0
+offset_bottom = 295.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("2_vwq66")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "Player"
+fit_content = true
+
+[node name="lblPlayerHand" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 318.0
+offset_right = 297.0
+offset_bottom = 377.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("2_vwq66")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "player hand"
+fit_content = true
+
+[node name="VSeparator" type="VSeparator" parent="."]
+offset_right = 4.0
+offset_bottom = 40.0
+
+[node name="btnHit" type="Button" parent="VSeparator"]
+layout_mode = 0
+offset_left = 382.0
+offset_top = 13.0
+offset_right = 541.0
+offset_bottom = 81.0
+text = "hit"
+
+[node name="btnStand" type="Button" parent="VSeparator"]
+layout_mode = 0
+offset_left = 381.0
+offset_top = 103.0
+offset_right = 540.0
+offset_bottom = 171.0
+text = "stand"
+
+[node name="lblWinner" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 798.0
+offset_top = 21.0
+offset_right = 973.0
+offset_bottom = 87.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("2_vwq66")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "player win"
+fit_content = true
+
+[node name="btnRestart" type="Button" parent="."]
+visible = false
+offset_left = 944.0
+offset_top = 547.0
+offset_right = 1103.0
+offset_bottom = 615.0
+text = "restart"
+
+[connection signal="pressed" from="VSeparator/btnHit" to="." method="_on_btn_hit_pressed"]
+[connection signal="pressed" from="VSeparator/btnStand" to="." method="_on_btn_stand_pressed"]
+[connection signal="pressed" from="btnRestart" to="." method="_on_btn_stand_pressed"]
+[connection signal="pressed" from="btnRestart" to="." method="_on_btn_restart_pressed"]

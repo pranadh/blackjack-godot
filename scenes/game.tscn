@@ -1,159 +1,283 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3sc71dur451r"]
+[gd_scene load_steps=7 format=3 uid="uid://b3sc71dur451r"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_j25t6"]
 [ext_resource type="FontFile" uid="uid://bnqne1ta3t25r" path="res://assets/fonts/Rubik-SemiBold.ttf" id="2_vwq66"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7jxh"]
+bg_color = Color(0, 0, 0, 0.772549)
+corner_detail = 2
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ni72"]
+bg_color = Color(0, 0, 0, 0.501961)
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ko624"]
+bg_color = Color(0.85098, 0.85098, 0.85098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54eiy"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_detail = 5
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_j25t6")
 
-[node name="main beige background" type="ColorRect" parent="."]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 1152.0
-offset_bottom = 651.0
-size_flags_horizontal = 3
-color = Color(0.533333, 0.482353, 0.360784, 1)
+[node name="main background" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_vertical = 2
+color = Color(0.0862745, 0.670588, 0.176471, 1)
 
-[node name="dealer black background" type="ColorRect" parent="."]
-offset_left = 13.0
-offset_top = 12.0
-offset_right = 195.0
-offset_bottom = 83.0
-size_flags_horizontal = 3
-color = Color(0, 0, 0, 0.717647)
+[node name="conBets" type="VBoxContainer" parent="."]
+offset_left = 20.0
+offset_top = 40.0
+offset_right = 360.0
+offset_bottom = 1013.0
+theme_override_constants/separation = 22
 
-[node name="player black background" type="ColorRect" parent="."]
-offset_left = 13.0
-offset_top = 232.0
-offset_right = 195.0
-offset_bottom = 303.0
-size_flags_horizontal = 3
-color = Color(0, 0, 0, 0.717647)
-
-[node name="lblDealerTitle" type="RichTextLabel" parent="."]
-offset_left = 31.0
-offset_top = 18.0
-offset_right = 248.0
-offset_bottom = 77.0
-size_flags_vertical = 4
+[node name="lblBetValue" type="Label" parent="conBets"]
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 9
-theme_override_fonts/normal_font = ExtResource("2_vwq66")
-theme_override_font_sizes/normal_font_size = 44
-bbcode_enabled = true
-text = "Dealer"
-fit_content = true
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "Place bet value:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="lblDealerHand" type="RichTextLabel" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 27.0
-offset_top = 97.0
-offset_right = 300.0
-offset_bottom = 156.0
-grow_horizontal = 2
-size_flags_vertical = 4
+[node name="btn1" type="Button" parent="conBets"]
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 9
-theme_override_fonts/normal_font = ExtResource("2_vwq66")
-theme_override_font_sizes/normal_font_size = 44
-bbcode_enabled = true
-text = "dealer hand"
-fit_content = true
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 50
+text = "$1"
 
-[node name="lblPlayerTitle" type="RichTextLabel" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 29.0
-offset_top = 238.0
-offset_right = 246.0
-offset_bottom = 297.0
-grow_horizontal = 2
-size_flags_vertical = 4
+[node name="btn5" type="Button" parent="conBets"]
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 9
-theme_override_fonts/normal_font = ExtResource("2_vwq66")
-theme_override_font_sizes/normal_font_size = 44
-bbcode_enabled = true
-text = "Player"
-fit_content = true
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 50
+text = "$5"
 
-[node name="lblPlayerHand" type="RichTextLabel" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 24.0
-offset_top = 318.0
-offset_right = 297.0
-offset_bottom = 377.0
-grow_horizontal = 2
-size_flags_vertical = 4
+[node name="btn10" type="Button" parent="conBets"]
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 9
-theme_override_fonts/normal_font = ExtResource("2_vwq66")
-theme_override_font_sizes/normal_font_size = 44
-bbcode_enabled = true
-text = "player hand"
-fit_content = true
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 50
+text = "$10"
 
-[node name="VSeparator" type="VSeparator" parent="."]
-offset_right = 4.0
-offset_bottom = 40.0
-
-[node name="btnHit" type="Button" parent="VSeparator"]
-layout_mode = 0
-offset_left = 382.0
-offset_top = 13.0
-offset_right = 541.0
-offset_bottom = 81.0
-text = "hit"
-
-[node name="btnStand" type="Button" parent="VSeparator"]
-layout_mode = 0
-offset_left = 381.0
-offset_top = 103.0
-offset_right = 540.0
-offset_bottom = 171.0
-text = "stand"
-
-[node name="lblWinner" type="RichTextLabel" parent="."]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 620.0
-offset_top = 518.0
-offset_right = 885.0
-offset_bottom = 624.0
-grow_horizontal = 2
-size_flags_vertical = 4
+[node name="btn50" type="Button" parent="conBets"]
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 9
-theme_override_fonts/normal_font = ExtResource("2_vwq66")
-theme_override_font_sizes/normal_font_size = 44
-bbcode_enabled = true
-text = "player win"
-fit_content = true
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 50
+text = "$50
+"
 
-[node name="btnRestart" type="Button" parent="."]
-visible = false
-offset_left = 944.0
-offset_top = 547.0
-offset_right = 1103.0
-offset_bottom = 615.0
-text = "restart"
+[node name="btnMinus1" type="Button" parent="conBets"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 50
+text = "-$1"
 
-[node name="btnBack" type="Button" parent="."]
-offset_left = 16.0
-offset_top = 558.0
-offset_right = 175.0
-offset_bottom = 626.0
-text = "back"
+[node name="btnMinus10" type="Button" parent="conBets"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 50
+text = "-$10"
 
-[connection signal="pressed" from="VSeparator/btnHit" to="." method="_on_btn_hit_pressed"]
-[connection signal="pressed" from="VSeparator/btnStand" to="." method="_on_btn_stand_pressed"]
-[connection signal="pressed" from="btnRestart" to="." method="_on_btn_stand_pressed"]
-[connection signal="pressed" from="btnRestart" to="." method="_on_btn_restart_pressed"]
-[connection signal="pressed" from="btnBack" to="." method="_on_btn_back_pressed"]
+[node name="btnMinus50" type="Button" parent="conBets"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 50
+text = "-$50
+"
+
+[node name="lblMoney" type="Label" parent="conBets"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "Money:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblMoneyValue" type="Label" parent="conBets"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ni72")
+text = "$0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblBet" type="Label" parent="conBets"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "Bet:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblCurrentBet" type="Label" parent="conBets"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ni72")
+text = "$0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btnDeal" type="Button" parent="."]
+offset_left = 850.0
+offset_top = 954.0
+offset_right = 1070.0
+offset_bottom = 1027.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.694118, 0.694118, 0.694118, 1)
+theme_override_colors/font_hover_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_ko624")
+theme_override_styles/focus = SubResource("StyleBoxFlat_54eiy")
+text = "Deal"
+
+[node name="cardDeck" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1586.0
+offset_top = 396.0
+offset_right = 1770.0
+offset_bottom = 672.0
+grow_vertical = 2
+color = Color(0.0313726, 0.403922, 0.619608, 1)
+
+[node name="card1" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 769.0
+offset_top = 99.0
+offset_right = 953.0
+offset_bottom = 375.0
+grow_vertical = 2
+color = Color(0.0313726, 0.403922, 0.619608, 1)
+
+[node name="card2" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 978.0
+offset_top = 98.0
+offset_right = 1162.0
+offset_bottom = 374.0
+grow_vertical = 2
+color = Color(0.0313726, 0.403922, 0.619608, 1)
+
+[node name="card3" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 715.0
+offset_top = 574.0
+offset_right = 899.0
+offset_bottom = 850.0
+grow_vertical = 2
+color = Color(0.0313726, 0.403922, 0.619608, 1)
+
+[node name="card4" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 869.0
+offset_top = 574.0
+offset_right = 1053.0
+offset_bottom = 850.0
+grow_vertical = 2
+color = Color(0.0823529, 0.54902, 0.831373, 1)
+
+[node name="card5" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1038.0
+offset_top = 574.0
+offset_right = 1222.0
+offset_bottom = 850.0
+grow_vertical = 2
+color = Color(0.0313726, 0.403922, 0.619608, 1)
+
+[node name="lblBetValue" type="Label" parent="."]
+offset_left = 806.0
+offset_top = 24.0
+offset_right = 1130.0
+offset_bottom = 75.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "Dealer: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblBetValue" type="Label" parent="lblBetValue"]
+offset_left = -4.0
+offset_top = 851.0
+offset_right = 320.0
+offset_bottom = 902.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "Player: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="conBets/btn1" to="." method="_on_btn_1_pressed"]
+[connection signal="pressed" from="conBets/btn5" to="." method="_on_btn_5_pressed"]
+[connection signal="pressed" from="conBets/btn10" to="." method="_on_btn_10_pressed"]
+[connection signal="pressed" from="conBets/btn50" to="." method="_on_btn_50_pressed"]
+[connection signal="pressed" from="conBets/btnMinus1" to="." method="_on_btn_minus_1_pressed"]
+[connection signal="pressed" from="conBets/btnMinus10" to="." method="_on_btn_minus_10_pressed"]
+[connection signal="pressed" from="conBets/btnMinus50" to="." method="_on_btn_minus_50_pressed"]
+[connection signal="pressed" from="btnDeal" to="." method="_on_btn_deal_pressed"]

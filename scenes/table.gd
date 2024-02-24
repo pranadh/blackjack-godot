@@ -4,10 +4,10 @@ var gameScene = preload("res://scenes/game.tscn")
 var save_path = "user://money.save"
 
 func _ready():
-	if Global.money == 0:
-		$"button contrainer/continue game button".disabled = true
+	$"button contrainer/continue game button".disabled = true
 
 func _on_start_game_button_pressed():
+	Global.money = 20
 	get_tree().change_scene_to_packed(gameScene)
 
 func _on_quit_game_button_pressed():

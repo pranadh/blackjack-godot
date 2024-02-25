@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3sc71dur451r"]
+[gd_scene load_steps=11 format=3 uid="uid://b3sc71dur451r"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_j25t6"]
 [ext_resource type="FontFile" uid="uid://bnqne1ta3t25r" path="res://assets/fonts/Rubik-SemiBold.ttf" id="2_vwq66"]
@@ -13,6 +13,60 @@ expand_margin_bottom = 5.0
 bg_color = Color(0, 0, 0, 0.501961)
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
+
+[sub_resource type="Animation" id="Animation_gxjrm"]
+resource_name = "move_to_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(20, 40), Vector2(-400, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_1e0v2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_3b7h4"]
+resource_name = "move_to_right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-400, 40), Vector2(20, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_of1y1"]
+_data = {
+"RESET": SubResource("Animation_1e0v2"),
+"move_to_left": SubResource("Animation_gxjrm"),
+"move_to_right": SubResource("Animation_3b7h4")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ko624"]
 bg_color = Color(0.85098, 0.85098, 0.85098, 1)
@@ -164,6 +218,11 @@ text = "$0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="conBets"]
+libraries = {
+"": SubResource("AnimationLibrary_of1y1")
+}
+
 [node name="btnDeal" type="Button" parent="."]
 offset_left = 850.0
 offset_top = 954.0
@@ -178,6 +237,38 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_ko624")
 theme_override_styles/focus = SubResource("StyleBoxFlat_54eiy")
 text = "Deal"
+
+[node name="btnHit" type="Button" parent="."]
+visible = false
+offset_left = 693.0
+offset_top = 954.0
+offset_right = 913.0
+offset_bottom = 1027.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.694118, 0.694118, 0.694118, 1)
+theme_override_colors/font_hover_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_ko624")
+theme_override_styles/focus = SubResource("StyleBoxFlat_54eiy")
+text = "Hit"
+
+[node name="btnStand" type="Button" parent="."]
+visible = false
+offset_left = 1008.0
+offset_top = 954.0
+offset_right = 1228.0
+offset_bottom = 1027.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.694118, 0.694118, 0.694118, 1)
+theme_override_colors/font_hover_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_ko624")
+theme_override_styles/focus = SubResource("StyleBoxFlat_54eiy")
+text = "Stand"
 
 [node name="cardDeck" type="ColorRect" parent="."]
 anchors_preset = 4
@@ -245,7 +336,7 @@ offset_bottom = 850.0
 grow_vertical = 2
 color = Color(0.0313726, 0.403922, 0.619608, 1)
 
-[node name="lblBetValue" type="Label" parent="."]
+[node name="lblDealerCard" type="Label" parent="."]
 offset_left = 806.0
 offset_top = 24.0
 offset_right = 1130.0
@@ -259,11 +350,11 @@ text = "Dealer: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="lblBetValue" type="Label" parent="lblBetValue"]
-offset_left = -4.0
-offset_top = 851.0
-offset_right = 320.0
-offset_bottom = 902.0
+[node name="lblPlayerCard" type="Label" parent="."]
+offset_left = 802.0
+offset_top = 875.0
+offset_right = 1126.0
+offset_bottom = 926.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 13
 theme_override_fonts/font = ExtResource("2_vwq66")
@@ -281,3 +372,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="conBets/btnMinus10" to="." method="_on_btn_minus_10_pressed"]
 [connection signal="pressed" from="conBets/btnMinus50" to="." method="_on_btn_minus_50_pressed"]
 [connection signal="pressed" from="btnDeal" to="." method="_on_btn_deal_pressed"]
+[connection signal="pressed" from="btnHit" to="." method="_on_btn_hit_pressed"]
+[connection signal="pressed" from="btnStand" to="." method="_on_btn_stand_pressed"]

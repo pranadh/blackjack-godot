@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3sc71dur451r"]
+[gd_scene load_steps=17 format=3 uid="uid://b3sc71dur451r"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_j25t6"]
 [ext_resource type="FontFile" uid="uid://bnqne1ta3t25r" path="res://assets/fonts/Rubik-SemiBold.ttf" id="2_vwq66"]
@@ -14,6 +14,81 @@ bg_color = Color(0, 0, 0, 0.501961)
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="Animation" id="Animation_1e0v2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lblNoBetValue:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("lblPlayerWin:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("lblNoMoney:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("lblPlayerBust:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("lblTie:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_gxjrm"]
 resource_name = "move_to_left"
 length = 0.3
@@ -28,21 +103,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(20, 40), Vector2(-400, 40)]
-}
-
-[sub_resource type="Animation" id="Animation_1e0v2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(20, 40)]
 }
 
 [sub_resource type="Animation" id="Animation_3b7h4"]
@@ -61,11 +121,108 @@ tracks/0/keys = {
 "values": [Vector2(-400, 40), Vector2(20, 40)]
 }
 
+[sub_resource type="Animation" id="Animation_va1jh"]
+resource_name = "notification_bet_value"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lblNoBetValue:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cofpe"]
+resource_name = "notification_dealer_win"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lblDealerWin:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y1pv6"]
+resource_name = "notification_player_win"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lblPlayerWin:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_earp2"]
+resource_name = "notification_no_money"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lblNoMoney:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o0s84"]
+resource_name = "notification_player_bust"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lblPlayerBust:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uh0re"]
+resource_name = "notification_tie"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lblTie:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_of1y1"]
 _data = {
 "RESET": SubResource("Animation_1e0v2"),
 "move_to_left": SubResource("Animation_gxjrm"),
-"move_to_right": SubResource("Animation_3b7h4")
+"move_to_right": SubResource("Animation_3b7h4"),
+"notification_bet_value": SubResource("Animation_va1jh"),
+"notification_dealer_win": SubResource("Animation_cofpe"),
+"notification_no_money": SubResource("Animation_earp2"),
+"notification_player_bust": SubResource("Animation_o0s84"),
+"notification_player_win": SubResource("Animation_y1pv6"),
+"notification_tie": SubResource("Animation_uh0re")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ko624"]
@@ -87,6 +244,7 @@ border_color = Color(0, 0, 0, 1)
 corner_detail = 5
 
 [node name="Game" type="Node2D"]
+position = Vector2(20, 40)
 script = ExtResource("1_j25t6")
 
 [node name="main background" type="ColorRect" parent="."]
@@ -364,6 +522,107 @@ text = "Player: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="lblNoBetValue" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 585.0
+offset_top = 399.0
+offset_right = 1386.0
+offset_bottom = 547.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "No bet money. 
+Increase using buttons."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblDealerWin" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 585.0
+offset_top = 399.0
+offset_right = 1386.0
+offset_bottom = 547.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "Dealer wins!
+Money lost: $money$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblPlayerWin" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 585.0
+offset_top = 399.0
+offset_right = 1386.0
+offset_bottom = 547.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "You win!
+Money earned: $money$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblNoMoney" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 585.0
+offset_top = 399.0
+offset_right = 1386.0
+offset_bottom = 547.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "You've run out of money!
+Better luck next time."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblPlayerBust" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 585.0
+offset_top = 399.0
+offset_right = 1386.0
+offset_bottom = 547.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "BUST! Dealer wins.
+Money lost: $money$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lblTie" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 585.0
+offset_top = 399.0
+offset_right = 1386.0
+offset_bottom = 547.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("2_vwq66")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7jxh")
+text = "TIE!
+Money returns."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Notifications" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_of1y1")
+}
+
 [connection signal="pressed" from="conBets/btn1" to="." method="_on_btn_1_pressed"]
 [connection signal="pressed" from="conBets/btn5" to="." method="_on_btn_5_pressed"]
 [connection signal="pressed" from="conBets/btn10" to="." method="_on_btn_10_pressed"]
@@ -374,3 +633,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="btnDeal" to="." method="_on_btn_deal_pressed"]
 [connection signal="pressed" from="btnHit" to="." method="_on_btn_hit_pressed"]
 [connection signal="pressed" from="btnStand" to="." method="_on_btn_stand_pressed"]
+[connection signal="animation_finished" from="Notifications" to="." method="_on_notifications_animation_finished"]

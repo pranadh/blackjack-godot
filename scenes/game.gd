@@ -146,11 +146,15 @@ func initial_deal():
 
 # Reset game after bust or win
 func reset_game():
-	_enable_buttons()
-	$btnDeal.show()
-	$btnHit.hide()
-	$btnStand.hide()
-	$conBets/AnimationPlayer.play("move_to_right")
+	if Global.money == 0:
+		$Notifications.play("notification_no_money")
+		return
+	else:
+		_enable_buttons()
+		$btnDeal.show()
+		$btnHit.hide()
+		$btnStand.hide()
+		$conBets/AnimationPlayer.play("move_to_right")
 
 # Calculate's hand value
 func calculate_hand_value(hand):
@@ -172,9 +176,11 @@ func hit(hand):
 	deal_card(hand)
 	_update_ui()
 	if calculate_hand_value(hand) > 21:
+		$Notifications.play("notification_player_bust")
 		bet = 0
 		_update_ui()
 		reset_game()
+		$btnDeal.hide()
 		return "Bust"
 	print("Continue")
 	return "Continue"
@@ -191,18 +197,21 @@ func stand(player_hand, dealer_hand):
 
 	if dealer_score > 21 or player_score > dealer_score:
 		print("Player Wins")
+		$Notifications.play("notification_player_win")
 		Global.money += bet * 2
 		bet = 0
 		_update_ui()
 		return "Player Wins"
 	elif dealer_score > player_score:
 		print("Dealer Wins")
+		$Notifications.play("notification_dealer_win")
 		bet = 0
 		_update_ui()
 		return "Dealer Wins"
 	else:
 		print("Tie")
 		Global.money += bet
+		$Notifications.play("notification_tie")
 		bet = 0
 		_update_ui()
 		return "Tie"
@@ -220,6 +229,7 @@ func _on_btn_stand_pressed():
 func _on_btn_deal_pressed():
 	if bet < 1:
 		print("Cannot deal, bet below 1.")
+		$Notifications.play("notification_bet_value")
 		return
 	_disable_buttons()
 	print("Starting game process.")
@@ -228,3 +238,12 @@ func _on_btn_deal_pressed():
 	$btnDeal.hide()
 	$btnHit.show()
 	$btnStand.show()
+
+
+func _on_notifications_animation_finished(anim_name):
+	if anim_name == "notification_player_bust":
+		$btnDeal.show()
+		return
+	if anim_name == "notification_no_money":
+		get_tree().change_scene_to_file("res://scenes/table.tscn")
+		return

@@ -428,72 +428,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ko624")
 theme_override_styles/focus = SubResource("StyleBoxFlat_54eiy")
 text = "Stand"
 
-[node name="cardDeck" type="ColorRect" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 1586.0
-offset_top = 396.0
-offset_right = 1770.0
-offset_bottom = 672.0
-grow_vertical = 2
-color = Color(0.0313726, 0.403922, 0.619608, 1)
-
-[node name="card1" type="ColorRect" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 769.0
-offset_top = 99.0
-offset_right = 953.0
-offset_bottom = 375.0
-grow_vertical = 2
-color = Color(0.0313726, 0.403922, 0.619608, 1)
-
-[node name="card2" type="ColorRect" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 978.0
-offset_top = 98.0
-offset_right = 1162.0
-offset_bottom = 374.0
-grow_vertical = 2
-color = Color(0.0313726, 0.403922, 0.619608, 1)
-
-[node name="card3" type="ColorRect" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 715.0
-offset_top = 574.0
-offset_right = 899.0
-offset_bottom = 850.0
-grow_vertical = 2
-color = Color(0.0313726, 0.403922, 0.619608, 1)
-
-[node name="card4" type="ColorRect" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 869.0
-offset_top = 574.0
-offset_right = 1053.0
-offset_bottom = 850.0
-grow_vertical = 2
-color = Color(0.0823529, 0.54902, 0.831373, 1)
-
-[node name="card5" type="ColorRect" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 1038.0
-offset_top = 574.0
-offset_right = 1222.0
-offset_bottom = 850.0
-grow_vertical = 2
-color = Color(0.0313726, 0.403922, 0.619608, 1)
-
 [node name="lblDealerCard" type="Label" parent="."]
 offset_left = 806.0
 offset_top = 24.0
@@ -622,6 +556,10 @@ vertical_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_of1y1")
 }
+
+[node name="PlayerHandArea" type="Node2D" parent="."]
+
+[node name="DealerHandArea" type="Node2D" parent="."]
 
 [connection signal="pressed" from="conBets/btn1" to="." method="_on_btn_1_pressed"]
 [connection signal="pressed" from="conBets/btn5" to="." method="_on_btn_5_pressed"]

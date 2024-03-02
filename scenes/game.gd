@@ -90,11 +90,39 @@ class Card:
 	var suit: String
 	var value: String
 	var points: int
+	var texture: Texture
 
 	func _init(_suit: String, _value: String, _points: int):
 		suit = _suit
 		value = _value
 		points = _points
+		texture = load("res://assets/card/textures/" + _suit + "_" + _value + ".png")
+
+var player_card_offset = 0
+var dealer_card_offset = 0
+
+# Assumes you have a Node2D named PlayerHandArea to act as the parent for card sprites
+func add_card_to_hand_visual(card: Card, is_player: bool):
+	var card_sprite = Sprite2D.new()
+	card_sprite.texture = card.texture
+	card_sprite.scale = Vector2(1.2, 1.2) # Adjust scale to fit the card size (99x153) depending on your texture size
+
+	if is_player:
+		$PlayerHandArea.add_child(card_sprite)
+	else:
+		$DealerHandArea.add_child(card_sprite)
+
+	# Calculate new position and shift existing cards
+	var base_position = Vector2(930, 750) if is_player else Vector2(930, 190)
+	var offset = Vector2(80, 0)
+	var parent_node = $PlayerHandArea if is_player else $DealerHandArea
+
+	card_sprite.position = base_position + Vector2(parent_node.get_child_count() * offset.x, 0)
+
+	# Shift existing cards
+	for i in range(parent_node.get_child_count()):
+		var child = parent_node.get_child(i)
+		child.position.x = base_position.x + i * offset.x
 
 # Generates a deck of 52 cards
 func create_deck():
@@ -139,14 +167,31 @@ func initial_deal():
 	player_hand.clear()
 	dealer_hand.clear()
 	deal_card(player_hand)
+	add_card_to_hand_visual(player_hand.back(), true)
 	deal_card(dealer_hand)
+	add_card_to_hand_visual(dealer_hand.back(), false)
 	deal_card(player_hand)
+	add_card_to_hand_visual(player_hand.back(), true)
 	deal_card(dealer_hand)
+	add_card_to_hand_visual(dealer_hand.back(), false)
 	_update_ui()
+
+
+# Function to clear all children from a node
+func clear_children(node):
+	for child in node.get_children():
+		child.queue_free()
+
+# Function to clear cards from the player and dealer hand areas
+func clear_card_areas():
+	clear_children($PlayerHandArea)
+	clear_children($DealerHandArea)
 
 # Reset game after bust or win
 func reset_game():
 	if Global.money == 0:
+		$btnHit.hide()
+		$btnStand.hide()
 		$Notifications.play("notification_no_money")
 		return
 	else:
@@ -155,6 +200,9 @@ func reset_game():
 		$btnHit.hide()
 		$btnStand.hide()
 		$conBets/AnimationPlayer.play("move_to_right")
+		clear_card_areas()
+		player_card_offset = 0
+		dealer_card_offset = 0
 
 # Calculate's hand value
 func calculate_hand_value(hand):
@@ -174,6 +222,7 @@ func calculate_hand_value(hand):
 # Hit and stand functions
 func hit(hand):
 	deal_card(hand)
+	add_card_to_hand_visual(hand.back(), true)
 	_update_ui()
 	if calculate_hand_value(hand) > 21:
 		$Notifications.play("notification_player_bust")
@@ -193,6 +242,7 @@ func stand(player_hand, dealer_hand):
 
 	while dealer_score < 17:
 		deal_card(dealer_hand)
+		add_card_to_hand_visual(dealer_hand.back(), false)
 		dealer_score = calculate_hand_value(dealer_hand)
 
 	if dealer_score > 21 or player_score > dealer_score:
